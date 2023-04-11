@@ -40,6 +40,9 @@ public class EmployeeController implements EmployeeInterface {
 			System.out.println(i.next());
 		}
 		
+		
+		emplist.forEach(System.out :: println);
+		
 	}
 
 	@Override

@@ -1,6 +1,6 @@
  import static java.lang.Math.*;
 
-class Employee{
+class Employee1{
 
 	private int eid;
 	private String ename;
@@ -48,17 +48,17 @@ class ArrayEg
 			System.out.println(i);
 		}
 
-		Employee e1 = new Employee();
+		Employee1 e1 = new Employee1();
 		e1.setEname("Malar");
-		Employee e2 = new Employee();
+		Employee1 e2 = new Employee1();
 		e2.setEname("Bala");
 
-		Employee[] empArr = new Employee[2];
+		Employee1[] empArr = new Employee1[2];
 		
 		empArr[0]=e1;
 		empArr[1]=e2;
 
-		for(Employee i : empArr)
+		for(Employee1 i : empArr)
 		{
 			System.out.println(i);
 		}

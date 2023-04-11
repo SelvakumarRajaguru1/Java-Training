@@ -1,4 +1,4 @@
-package com.extra;
+package com.dal.extra;
 
 class Emp{
 	int empid;
