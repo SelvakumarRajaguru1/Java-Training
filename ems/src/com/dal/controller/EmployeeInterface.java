@@ -7,4 +7,6 @@ public interface EmployeeInterface {
 	public void deserializeEmp();
 	public void sortByEid();
 	public void sortByEname();
+	public void updateEmployee();
+	public void deleteEmployee();
 }

@@ -22,6 +22,8 @@ public class MainClass {
 			System.out.println("4. Deserialize Emplist");
 			System.out.println("5. Sort Emp by ID");
 			System.out.println("6. Sort by Emp name");
+			System.out.println("7. Update Emp name");
+			System.out.println("8. Delete Employee");
 			int ch = sc.nextInt();
 			switch (ch) {
 			case 1: {
@@ -47,6 +49,14 @@ public class MainClass {
 			}
 			case 6: {
 				ec.sortByEname();
+				break;
+			}
+			case 7: {
+				ec.updateEmployee();
+				break;
+			}
+			case 8: {
+				ec.deleteEmployee();
 				break;
 			}
 			default: {
