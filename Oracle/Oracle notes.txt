@@ -1,0 +1,280 @@
+Oracle
+
+DBMS  - software
+
+Terminologies :
+
+1) Relation     	-- table
+2) Tuple		-- row
+3) Attribute		-- columns
+4) Cardinality		-- no.of rows in a table
+5) Degree of the table	-- no. of columns in the table
+
+
+DBMS 
+RDBMS
+ORDBMS
+
+ER Model - Entity Relationship Model - how tables are related to each other is given as a digramatic fashion
+
+SQL:
+----
+
+DDL  - Data Definition Language 
+	-- Query associated with table and its structure
+	create, alter, drop,truncate,rename
+DML  - Data Manipulation Language
+	-- Query associated with the table values
+	-- insert, update,delete,merge
+DCL –  Data Control Language
+ 	-- Query associates with privileges
+	-- grant,revoke
+DQL -  Data Query Language
+	-- Query associated with data retrival
+	-- select
+TCL –  Transaction Control Language
+	-- How the data get affected in the memory /hd
+	commit,rollback,savepoint
+
+---------------------------------------------------
+Datas in table is case sensitive
+
+restrict rows using where clause.
+
+string and date type values shd be enclosed within single quote ''
+
+like - pattern mathcing - wildcard characters  
+% -- one or more charzcter
+
+_  -- replaced with single character
+
+Functions:
+ -- Single row 
+     	-- Character
+	-- number
+	-- date
+	--conversion 
+            -- Implicit data type conversion
+	    -- explicit data type conversion
+		 to_number()
+		 to_date()
+		 to_char()  - TO_CHAR(date, 'format_model')
+            
+	-- general
+ -- Multiple row
+
+Group functions/aggregate function
+   sum, avg,min,max,count
+	
+
+Groupby clause
+   -- framing subgroups 
+
+Rules:
+1) Columns in the select list shd be there in group by clause
+   select job,deptno from emp group by deptno,job;
+
+2) Columns in the group by clause may or may not be there in the select list
+ 	 select job from emp group by deptno,job;
+
+
+3) Alias name cannot be used in group by
+	 select deptno en from emp group by deptno;
+
+4) group by results in unique values/results
+	select deptno from emp group by deptno;
+
+
+5) The columns in the select list within group function may or maynot be there in group by clause.
+	select min(sal),deptno from emp group by deptno;
+
+
+6) To restrict the no.of rows in the group use having clause
+	select min(sal),deptno from emp group by deptno having deptno=20;
+
+
+7) The column used in having clause shd be used in group by clause.
+	select min(sal),deptno from emp group by deptno,sal having sal>1000;
+
+8) If the column in the having clause is within the group function , then it may or maynot be in the group by clause.
+	select min(sal),deptno from emp group by deptno having min(sal)>900;
+
+9) Having clause cannot accept alias name.
+	select min(sal),deptno  from emp group by deptno dn having dn=30;
+
+10) Cannot use group function with where clause
+	select sal,deptno from emp where min(sal)>=950 
+
+--------------------------------------------------------
+
+Day 2:
+------
+
+Joins: joining one or more tables and retrieving data from those tables
+
+Types of joins:
+
+1) Natural join
+2) Equi join
+3) Non-Equi join
+4) Outer join
+     -- Left outer join
+     -- Right outer join
+     -- Full outer join
+5) Self join - joining the table with itself
+6) Cross join - cartesian product
+
+-------------------------------------------
+
+SubQuery:
+
+1) Single-row subquery
+2) Multiple-row subquery
+3) Multiple column subquery
+4) Corelated subquery.
+
+---------------------------------------------
+Day 3:
+
+Insert using subquery
+Insert during creation of table
+Multiple row insert
+
+Constrainst:
+
+--> Rules to be followed while inserting the data
+--> restrictions applied to the table /column
+
+Syntax:
+CREATE TABLE [schema.]table
+      (column datatype [DEFAULT expr]
+      [column_constraint],
+      ...
+      [table_constraint][,...]);
+
+Catogories
+1) Table Level constrainst
+2) Column Level constr.
+
+
+Types :
+1) Primary key -- Unique key which represents the entire record.
+                --- NO Duplicate values, NO NULL     Eg: Empno
+2) NOT NULL     -- NO NULL, Accept duplicates  Eg: Ename , mandatory value
+		-- CANNOT BE given at the TABLE LEVEL
+  
+3) Unique constraint  -- NO Duplicates, Accepts NULL    Eg: Phone
+4) Check 	       -- constr with expression	Eg: salary>5000
+5) Foreign key 		-- create relationship among the table  Eg:Primary key col of one table is the foreign key in other table
+
+If there is no name for your constraint , the Oracle server will create a name with convention
+SYS_Cxxx.
+
+
+ON DELETE SET NULL
+ON DELETE CASCADE
+
+
+OBJECTS IN DB
+
+1) Table
+2) Views
+3) Index
+4) Sequence
+5) Synonmys
+
+-------------------------------------------------
+DCL
+
+GRANT privilege [, privilege...]			
+TO user [, user| role, PUBLIC...];
+
+REVOKE {privilege [, privilege...]|ALL}
+ON	  object
+FROM   {user[, user...]|role|PUBLIC}
+[CASCADE CONSTRAINTS];
+
+------------------------------
+ alter session set "_ORACLE_SCRIPT"=true;
+
+------------------------------------------------------
+Other Schema Objects:
+
+Views:
+
+-- A logical table , based on a table or another view.
+-- It contains NO DATA of its own, but it is like a window thro which datas in the tables can be viewed.
+-- view cannt be altered using alter stmt instead use OR REPLACE
+--
+
+
+CREATE [OR REPLACE] [FORCE|NOFORCE] VIEW view
+  [(alias[, alias]...)]
+ AS subquery
+[WITH CHECK OPTION [CONSTRAINT constraint]]
+[WITH READ ONLY [CONSTRAINT constraint]];
+
+TYpes of views
+1) Simple view   -- a view with ONLY ONE base table
+2) Complex view  -- a view with more than one base tables.(DML is not ALWAYS POSSIBLE)
+
+SEQUENCE:
+---------
+Can automatically generate unique numbers
+Is a shareable object
+Can be used to create a primary key value
+Replaces application code
+Speeds up the efficiency of accessing sequence values when cached in memory
+
+CREATE SEQUENCE sequence
+       [INCREMENT BY n]
+       [START WITH n]
+       [{MAXVALUE n | NOMAXVALUE}]
+       [{MINVALUE n | NOMINVALUE}]
+       [{CYCLE | NOCYCLE}]
+       [{CACHE n | 	NOCACHE}];
+
+Index:
+
+-- TO speed up the process during retrival of records.
+-- Unique index, bitmap index
+UNique index is automatically created if you enable unique /primary key constraint
+
+CREATE [UNIQUE][BITMAP]INDEX index
+ON table (column[, column]...);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
