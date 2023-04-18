@@ -279,20 +279,22 @@ end;
 --To write a  Cursor to display the list of employees who are Working as a Managers or Analyst.
 
 DECLARE
---jb2 varchar2 := &job1;
---jb3 varchar2 :=&job2;
-      cursor c(jb varchar2,jb1 varchar2) is select ename from emp where (job=jb or job=jb1); 
-em emp.job%type;
+jb2 varchar2(20);
+jb3 varchar2(20);
+emprec emp%rowtype;
+
+cursor c(jb varchar2,jb1 varchar2) is select * from emp where (job=jb or job=jb1); 
+
 BEGIN
-jb2 varchar2 := &job1;
-jb3 varchar2 := &job2;
-  open c('MANAGER','ANALYST');
---open c(jb2,jb3);
+jb2  := '&job1';
+jb3  := '&job2';
+  --open c('MANAGER','ANALYST');
+open c(jb2,jb3);
     dbms_output.put_line(' EMPLOYEES WORKING AS MANAGERS ARE:');
   loop
-  fetch c into em;
+  fetch c into emprec;
   exit when c%notfound;
-  dbms_output.put_line(em);
+  dbms_output.put_line(emprec.ename);
   end loop;
   close c;
  
