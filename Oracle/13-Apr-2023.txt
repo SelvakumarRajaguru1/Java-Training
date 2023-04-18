@@ -1,0 +1,44 @@
+ 
+
+132. List the emps Name, Dept, Sal & Comm for those whose Salary is between 2000 and 5000 and Loc is Chicago.
+
+ 
+
+select e.ename,e.sal,e.comm,d.dname from emp e inner join dept d
+
+on e.sal between 2000 and 5000 and e.deptno =  d.deptno
+
+and d.loc='CHICAGO'
+
+ 
+
+
+
+133. List the emps whose Salary is greater than his Manager’s salary.
+
+ 
+
+select e.empno,e.ename,e.sal,e.mgr,e1.sal as MGRSAL from emp e inner join emp e1
+
+on e.mgr=e1.empno and e.sal > e1.sal
+
+ 
+
+
+
+134. List the Grade, Ename for the Deptno 10 or 30 but grade is not 4 while they joined in the company before ’31-Dec-82’.
+
+ 
+
+select e.empno, e.ename,d.deptno,d.dname,e.sal,sg.grade from emp e inner join dept d
+
+on e.hiredate < '31-Dec-82' and 
+
+e.deptno =  d.deptno and (d.deptno = 10 or d.deptno = 30)
+
+INNER join salgrade sg on e.sal between sg.losal and sg.hisal
+
+and sg.grade <> 4
+
+
+
