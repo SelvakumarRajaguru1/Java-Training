@@ -1,5 +1,5 @@
 //package javaconcurrency;
-
+package com.dal.threadseg;
 import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
