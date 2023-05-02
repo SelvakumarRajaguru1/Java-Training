@@ -7,5 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Java_Handon/ojdbc7.jar"/>
+	<classpathentry kind="lib" path="C:/Java_Handon/commons-lang3-3.11.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
